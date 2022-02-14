@@ -220,6 +220,16 @@ function augmentInstantSearch(instantSearchOptions) {
 }
 
 export function createServerRootMixin(instantSearchOptions = {}) {
+  if (!instantSearchOptions.searchClient) {
+    throw new Error(`The \`searchClient\` option is required.
+
+See documentation: https://www.algolia.com/doc/api-reference/widgets/instantsearch/js/`);
+  }
+  if (!instantSearchOptions.indexName) {
+    throw new Error(`The \`indexName\` option is required.
+
+See documentation: https://www.algolia.com/doc/api-reference/widgets/instantsearch/js/`);
+  }
   // put this in the user's root Vue instance
   // we can then reuse that InstantSearch instance seamlessly from `ais-instant-search-ssr`
   const rootMixin = {
