@@ -100,6 +100,7 @@ function augmentInstantSearch(instantSearchOptions) {
     }
 
     let app;
+    let instance;
 
     return Promise.resolve()
       .then(() => {
@@ -114,20 +115,22 @@ function augmentInstantSearch(instantSearchOptions) {
                 }
               },
               created() {
-                search.start();
+                instance = this.instantsearch;
+
+                instance.start();
                 // although we use start for initializing the main index,
                 // we don't want to send search requests yet
-                search.started = false;
+                instance.started = false;
               },
             },
           ],
         });
       })
       .then(() => renderToString(app))
-      .then(() => searchOnlyWithDerivedHelpers(search.mainHelper))
+      .then(() => searchOnlyWithDerivedHelpers(instance.mainHelper))
       .then(() => {
         initialResults = {};
-        walkIndex(search.mainIndex, widget => {
+        walkIndex(instance.mainIndex, widget => {
           const { _state, _rawResults } = widget.getResults();
 
           initialResults[widget.getIndexId()] = {
