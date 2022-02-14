@@ -152,7 +152,7 @@
     "brotli-size": "4.0.0"
   },
   "jest": {
-    "setupFilesAfterEnv": ["./jest.setup.js"],
+    "setupTestFrameworkScriptFile": "./jest.setup.js",
     "moduleFileExtensions": [
       "js",
       "vue"
