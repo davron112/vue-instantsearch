@@ -219,8 +219,6 @@ function augmentInstantSearch(instantSearchOptions, cloneComponent) {
 export function createServerRootMixin(instantSearchOptions = {}) {
   const { $cloneComponent = defaultCloneComponent } = instantSearchOptions;
 
-  const search = augmentInstantSearch(instantSearchOptions, $cloneComponent);
-
   // put this in the user's root Vue instance
   // we can then reuse that InstantSearch instance seamlessly from `ais-instant-search-ssr`
   const rootMixin = {
@@ -230,6 +228,11 @@ export function createServerRootMixin(instantSearchOptions = {}) {
       };
     },
     data() {
+      const search = augmentInstantSearch(
+        instantSearchOptions,
+        $cloneComponent
+      );
+
       return {
         // this is in data, so that the real & cloned render do not share
         // the same instantsearch instance.
