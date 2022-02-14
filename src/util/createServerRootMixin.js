@@ -230,6 +230,7 @@ See documentation: https://www.algolia.com/doc/api-reference/widgets/instantsear
 
 See documentation: https://www.algolia.com/doc/api-reference/widgets/instantsearch/js/`);
   }
+
   // put this in the user's root Vue instance
   // we can then reuse that InstantSearch instance seamlessly from `ais-instant-search-ssr`
   const rootMixin = {
