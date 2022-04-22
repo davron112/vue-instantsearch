@@ -118,7 +118,7 @@ export default {
   props: {
     attribute: {
       type: String,
-      required: true,
+      default: "*",
     },
     searchable: {
       type: Boolean,
